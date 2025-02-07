@@ -3,8 +3,9 @@ from discord.ext import commands
 import yt_dlp
 import asyncio
 import os
+from dotenv import load_dotenv
 
-
+load_dotenv()
 # Configuración inicial
 intents = discord.Intents.default()
 intents.messages = True
@@ -115,10 +116,9 @@ async def queue(ctx):
         message = "\n".join([f"**{i+1}.** {song[1]}" for i, song in enumerate(songs)])
         await ctx.send(f"🎶 **Cola de reproducción:**\n{message}")
 
-# Evento de inicio
+
 @bot.event
 async def on_ready():
     print(f"Bot conectado como {bot.user}")
 
-# Token del bot (reemplázalo con tu token)
 bot.run(os.getenv("DISCORD_TOKEN"))
